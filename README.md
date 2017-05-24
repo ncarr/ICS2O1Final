@@ -28,7 +28,14 @@ x - The x coordinate of the car
 y - The y coordinate of the car
 
 ### Program Plan
-#### Show the main menu
-Animate the game in the background
+#### Show the main menu over a never-ending simulation of the game
+ - Create the background and the cars
+ - Display the text and buttons over the simulation
+ - Read the high score from a file
+ - Move cars slowly in the background
+ - Occasionally move the car being chased, then don't display any oncoming cars in front of it
+
+#### Display the help page
+
 
 ### Other Ideas
