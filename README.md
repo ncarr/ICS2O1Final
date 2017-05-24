@@ -1,4 +1,5 @@
-# ICS2O1 Final Project
+# Turbulent Tailing
+## ICS2O1 Final Project
 #### Victor and Nicholas
 
 ## Proposal
@@ -12,7 +13,19 @@ It is a car chase game where the user must avoid obstacles such as robot pedestr
 We have a mockup of the basic application flow on [Adobe XD](https://xd.adobe.com/view/cea6190b-c634-4972-adbd-69d5ded2999b/).
 
 ### Description of Key Variables
-Yes
+#### Variables that keep track of the current game's state
+timePassed - int - The number of frames that have been rendered in the current game. It will be used to calculate the score.
+
+score - int - Number of points the user has in the current game.
+
+speed - int - The number of pixels the background moves every frame.
+
+cars - array - Keeps track of the co-ordinates of all the oncoming cars on the screen.
+
+#### Each individual car object
+x - The x coordinate of the car
+
+y - The y coordinate of the car
 
 ### Program Plan
 

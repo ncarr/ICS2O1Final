@@ -1,7 +1,7 @@
 """A setup module for pip"""
 from setuptools import setup, find_packages
 setup(
-    name='ICS2O1Final',
+    name='TurbulentTailing',
     version='0.1.1',
     description='A car chase game where you avoid obstacles and try not to get captured.',
     url='https://github.com/ncarr/ICS2O1Final',
