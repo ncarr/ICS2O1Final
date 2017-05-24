@@ -1,5 +1,5 @@
 # Turbulent Tailing
-## ICS2O1 Final Project
+### ICS2O1 Final Project
 #### Victor and Nicholas
 
 ## Proposal
@@ -10,34 +10,35 @@ We are making a car chase game where you avoid other cars, buildings, hydrants a
 Turbulent Tailing is a car chase game where the user must avoid obstacles such as oncoming traffic, traffic from intersecting roads and buildings along the side of the road. The user will be able to increase and decrease acceleration and steer with the arrow keys. The car will slowly decelerate and be captured if the user does not accelerate over time. The user could also become captured if they hit another car, veer off the road and crash, or run a red light. The game is kept interesting by randomly generated obstacles.
 
 ### Screen Layouts and Basic Input
-For an interactive version, visit our mockup of the basic application flow on [Adobe XD](https://xd.adobe.com/view/71f7b860-1d8b-4d1f-9c1a-d05e1cb64708).
+For an interactive version, visit our mockup of the basic application flow on [Adobe XD](https://xd.adobe.com/view/002886b5-0f98-4fb5-9d2f-e04b70b18efe/).
 #### Main Menu
-![alt text](https://github.com/ncarr/ICS2O1Final/raw/master/design/home.png "Main Menu")
+![Main Menu](design/home.png)
 #### Help Screen
-![alt text](https://github.com/ncarr/ICS2O1Final/raw/master/design/help.png "Help Screen")
+![Help Screen](design/help.png)
 #### In Game
-![alt text](https://github.com/ncarr/ICS2O1Final/raw/master/design/inGame.png "In Game")
+![In Game](design/inGame.png)
 #### Pause Menu
-![alt text](https://github.com/ncarr/ICS2O1Final/raw/master/design/paused.png "Pause Manu")
+![Pause Menu](design/paused.png)
 #### End Screen
-![alt text](https://github.com/ncarr/ICS2O1Final/raw/master/design/end.png "End Screen")
+![End Screen](design/end.png)
 
 ### Description of Key Variables
 #### Variables that keep track of the current game's state
-| Variable   | Type  | Description|
-| :--------: | :---: | ---------- |
+| Variable   | Type  | Description                                                                                  |
+| :--------: | :---: | -------------------------------------------------------------------------------------------- |
 | timePassed | int   | The number of frames that have been rendered in the current game. Used to calculate `score`. |
-| score      | int   | Number of points the user has in the current game. |
-| highScore  | int   | The player's high score across all games played. |
-| speed      | int   | The number of pixels the background moves every frame. (the car's speed) |
-| cars       | array | Keeps track of the co-ordinates of all the oncoming cars on the screen.
+| score      | int   | Number of points the user has in the current game.                                           |
+| highScore  | int   | The player's high score across all games played.                                             |
+| speed      | int   | The number of pixels the background moves every frame. (the car's speed)                     |
+| cars       | array | Keeps track of the co-ordinates of all the oncoming cars on the screen.                      |
 
 #### Each individual car object
-| Variable | Type | Description                 |
-| :------: | :--: | --------------------------- |
-| x        | int  | The x coordinate of the car |
-| y        | int  | The y coordinate of the car |
-
+| Variable  | Type  | Description                                     |
+| :-------: | :---: | ----------------------------------------------- |
+| x         | int   | The x coordinate of the car                     |
+| y         | int   | The y coordinate of the car                     |
+| speed     | int   | The speed of the car relative to the background |
+| direction | float | The direction of the car in radians             |
 ### Program Plan
 #### Show the main menu over a never-ending simulation of the game
  - Create the background and the cars
@@ -70,7 +71,5 @@ For an interactive version, visit our mockup of the basic application flow on [A
 #### End screen/Game over
  - Prevent the user from controlling their car
  - Display the text and buttons
- - If the `score` is greater than `highScore`, make `highScore` equal `score`
+ - If the `score` is greater than `highScore`, make `highScore` equal `score` and save it to the file
  - Go to screen depending on which button is pressed
-
-### Other Ideas
