@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Car" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 550 1100" style="enable-background:new 0 0 550 1100;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#E0E0E0;}
+	.st1{fill:#D32F2F;}
+	.st2{fill:#BDBDBD;}
+	.st3{fill:#212121;}
+	.st4{fill:#F5F5F5;}
+	.st5{fill:#424242;}
+	.st6{fill:#2196F3;}
+	.st7{fill:#F44336;}
+</style>
+<polyline class="st0" points="1,166.5 55.8,330.8 494.1,330.8 548.9,166.5 "/>
+<path class="st1" d="M442.6,218"/>
+<polyline class="st0" points="548.9,933.5 494.1,769.2 55.8,769.2 1,933.5 "/>
+<polyline class="st2" points="1,166.5 1,933.5 55.8,769.2 55.8,330.8 "/>
+<polyline class="st2" points="548.9,933.5 548.9,166.5 494.1,330.8 494.1,769.2 "/>
+<polyline class="st3" points="28.4,174.7 77.7,322.6 472.2,322.6 521.5,174.7 "/>
+<polyline class="st3" points="521.5,925.3 472.2,777.4 77.7,777.4 28.4,925.3 "/>
+<line class="st3" x1="46" y1="550" x2="46" y2="451.4"/>
+<polyline class="st3" points="13.1,560 13.1,830.6 46,732 46,560 "/>
+<line class="st3" x1="13.1" y1="352.8" x2="13.1" y2="550"/>
+<polyline class="st3" points="13.1,537 12,263.2 44.9,361.8 46,537 "/>
+<polyline class="st3" points="536.3,536.5 536.3,265.8 503.4,364.4 503.4,536.5 "/>
+<polyline class="st3" points="536.3,559.4 537.4,833.2 504.5,734.6 503.4,559.4 "/>
+<rect x="55.8" y="330.8" class="st4" width="438.3" height="438.3"/>
+<polyline class="st5" points="548.9,166.5 521.2,0 21.7,0 1,166.5 "/>
+<polyline class="st5" points="1.6,933.5 29.3,1100 528.8,1100 549.5,933.5 "/>
+<rect x="191.4" y="520.4" class="st5" width="167.1" height="59.3"/>
+<rect x="358.6" y="520.4" class="st6" width="95.4" height="59.3"/>
+<rect x="96" y="520.4" class="st7" width="95.4" height="59.3"/>
+</svg>
