@@ -10,7 +10,17 @@ We are making a car chase game where you avoid other cars, buildings, hydrants a
 Turbulent Tailing is a car chase game where the user must avoid obstacles such as oncoming traffic, traffic from intersecting roads and buildings along the side of the road. The user will be able to increase and decrease acceleration and steer with the arrow keys. The car will slowly decelerate and be captured if the user does not accelerate over time. The user could also become captured if they hit another car, veer off the road and crash, or run a red light. The game is kept interesting by randomly generated obstacles.
 
 ### Screen Layouts and Basic Input
-We have a mockup of the basic application flow on [Adobe XD](https://xd.adobe.com/view/71f7b860-1d8b-4d1f-9c1a-d05e1cb64708).
+For an interactive version, visit our mockup of the basic application flow on [Adobe XD](https://xd.adobe.com/view/71f7b860-1d8b-4d1f-9c1a-d05e1cb64708).
+#### Main Menu
+![alt text](https://github.com/ncarr/ICS2O1Final/raw/master/design/home.png "Main Menu")
+#### Help Screen
+![alt text](https://github.com/ncarr/ICS2O1Final/raw/master/design/help.png "Help Screen")
+#### In Game
+![alt text](https://github.com/ncarr/ICS2O1Final/raw/master/design/inGame.png "In Game")
+#### Pause Menu
+![alt text](https://github.com/ncarr/ICS2O1Final/raw/master/design/paused.png "Pause Manu")
+#### End Screen
+![alt text](https://github.com/ncarr/ICS2O1Final/raw/master/design/end.png "End Screen")
 
 ### Description of Key Variables
 #### Variables that keep track of the current game's state
@@ -52,12 +62,12 @@ We have a mockup of the basic application flow on [Adobe XD](https://xd.adobe.co
  - If the player runs over an obstacle (i.e. traffic cone, fire hydrant) reduce the player's `speed` temporarily
  - If the police car comes into contact with the player, show the game over screen
 
-#### Pause screen
+#### Pausing the game
  - Make the game tinted with all cars stopped
  - Display the text and buttons
  - Resume the game/Go to a screen depending on which button is pressed
 
-#### End screen
+#### End screen/Game over
  - Prevent the user from controlling their car
  - Display the text and buttons
  - If the `score` is greater than `highScore`, make `highScore` equal `score`
