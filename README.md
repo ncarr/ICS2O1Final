@@ -7,7 +7,7 @@ We are making a car chase game where you avoid other cars, buildings, hydrants a
 
 ## Design
 ### Program Overview
-It is a car chase game where the user must avoid obstacles such as robot pedestrians, robot cyclists, oncoming traffic, traffic from intersecting roads and buildings along the side of the road. The user will be able to increase and decrease acceleration as well as steer with the arrow keys. The car will slowly decelerate and be captured if the user does not accelerate over time. The game is kept interesting by randomly generated obstacles.
+Turbulent Tailing is a car chase game where the user must avoid obstacles such as oncoming traffic, traffic from intersecting roads and buildings along the side of the road. The user will be able to increase and decrease acceleration and steer with the arrow keys. The car will slowly decelerate and be captured if the user does not accelerate over time. The user could also become captured if they hit another car, veer off the road and crash, or run a red light. The game is kept interesting by randomly generated obstacles.
 
 ### Screen Layouts and Basic Input
 We have a mockup of the basic application flow on [Adobe XD](https://xd.adobe.com/view/cea6190b-c634-4972-adbd-69d5ded2999b/).
@@ -28,5 +28,7 @@ x - The x coordinate of the car
 y - The y coordinate of the car
 
 ### Program Plan
+#### Show the main menu
+Animate the game in the background
 
 ### Other Ideas
