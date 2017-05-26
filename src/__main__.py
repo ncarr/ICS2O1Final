@@ -25,25 +25,31 @@ class Car(pygame.sprite.Sprite):
 
     def startTurning(self, degrees=5):
         self.turnDirection = degrees
+    def stopTurning(self):
+        self.turnDirection = 0
     def turn(self, degrees=5):
         self.direction += degrees
-    def stopTurning (self):
-        self.turnDirection = 0
     def startAcceleration(self, pixels=2):
         self.isAccelerating = pixels
+    def stopAcceleration(self):
+        self.isAccelerating = 0
     def accelerate(self, pixels=2):
         self.speed += pixels
         if self.speed > self.MAX_SPEED:
             self.speed = self.MAX_SPEED
-    def stopAcceleration(self):
-        self.isAccelerating = 0
+        elif self.speed < -self.MAX_SPEED:
+            self.speed = -self.MAX_SPEED
+    def deltaX(self, rad):
+        return -self.speed * math.sin(rad)
+    def deltaY(self, rad):
+        return -self.speed * math.cos(rad)
     def update(self):
         self.turn(self.turnDirection)
         self.accelerate(self.isAccelerating)
         x, y = self.position
         rad = self.direction * math.pi / 180
-        x += -self.speed * math.sin(rad)
-        y += -self.speed * math.cos(rad)
+        x += self.deltaX(rad)
+        y += self.deltaY(rad)
         self.position = (x, y)
         self.image = pygame.transform.rotate(self.imageSource, self.direction) #pygame.image.load("../assets/png/playerCar.png")
         self.rect = self.image.get_rect()
@@ -69,22 +75,23 @@ class UserCar(Car):
         elif self.scroller.speed < -self.MAX_SPEED:
             self.scroller.speed = -self.MAX_SPEED
 
+    def deltaX(self, rad):
+        """Use the scroller's speed instead of its own"""
+        return -self.scroller.speed * math.sin(rad)
+    def deltaY(self, rad):
+        """Keep the car in the same place on the screen"""
+        return 0
+
 class DummyCar(Car):
     """The cars that drive independently of the user"""
     def __init__(self, scroller, position, speed, direction):
         Car.__init__(self, position, speed, direction)
         self.scroller = scroller
-        self.image = pygame.image.load("../assets/png/playerCar.png")
+        self.imageSource = pygame.image.load("../assets/png/playerCar.png")
 
-    def update(self):
-        x, y = self.position
-        rad = self.direction * math.pi / 180
-        x += -self.speed * math.sin(rad)
-        y += -self.speed * math.cos(rad) + self.scroller.speed
-        self.position = (x, y)
-        self.image = pygame.transform.rotate(self.image, self.direction)
-        self.rect = self.image.get_rect()
-        self.rect.center = self.position
+    def deltaY(self, rad):
+        """Move DummyCar instances relative to the background"""
+        return -self.speed * math.cos(rad) + self.scroller.speed
 
 class BackgroundScroller(object):
     """Scrolls the background at the speed the car is going"""
