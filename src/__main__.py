@@ -45,7 +45,7 @@ class Car(pygame.sprite.Sprite):
         x += -self.speed * math.sin(rad)
         y += -self.speed * math.cos(rad)
         self.position = (x, y)
-        self.image = pygame.transform.rotate(self.image, self.direction) #pygame.image.load("../assets/png/playerCar.png")
+        self.image = pygame.transform.rotate(self.imageSource, self.direction) #pygame.image.load("../assets/png/playerCar.png")
         self.rect = self.image.get_rect()
         self.rect.center = self.position
 
@@ -53,14 +53,14 @@ class PoliceCar(Car):
     """The police car"""
     def __init__(self, position=(505, 700), speed=0, direction=0):
         Car.__init__(self, position, speed, direction)
-        self.image = pygame.image.load("../assets/png/policeCar.png")
+        self.imageSource = pygame.image.load("../assets/png/policeCar.png")
 
 class UserCar(Car):
     """The car the user controls"""
     def __init__(self, scroller, position=(505, 450), speed=0, direction=0):
         Car.__init__(self, position, speed, direction)
         self.scroller = scroller
-        self.image = pygame.image.load("../assets/png/playerCar.png")
+        self.imageSource = pygame.image.load("../assets/png/playerCar.png")
 
     def accelerate(self, pixels=2):
         self.scroller.speed += pixels
