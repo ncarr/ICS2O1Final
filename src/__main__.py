@@ -20,47 +20,53 @@ class Car(pygame.sprite.Sprite):
         self.position = position
         self.speed = speed
         self.direction = direction
+        self.isAccelerating = 0
+        self.turnDirection = 0
 
-    def turnLeft(self, degrees=5):
+    def startTurning(self, degrees=5):
+        self.turnDirection = degrees
+    def turn(self, degrees=5):
         self.direction += degrees
-    def turnRight(self, degrees=5):
-        self.direction -= degrees
+    def stopTurning (self):
+        self.turnDirection = 0
+    def startAcceleration(self, pixels=2):
+        self.isAccelerating = pixels
     def accelerate(self, pixels=2):
         self.speed += pixels
         if self.speed > self.MAX_SPEED:
             self.speed = self.MAX_SPEED
-    def decelerate(self, pixels=2):
-        self.speed -= pixels
-        if self.speed < -self.MAX_SPEED:
-            self.speed = -self.MAX_SPEED
+    def stopAcceleration(self):
+        self.isAccelerating = 0
     def update(self):
+        self.turn(self.turnDirection)
+        self.accelerate(self.isAccelerating)
         x, y = self.position
         rad = self.direction * math.pi / 180
         x += -self.speed * math.sin(rad)
         y += -self.speed * math.cos(rad)
         self.position = (x, y)
-        self.image = pygame.transform.rotate(pygame.image.load("../assets/png/playerCar.png"), self.direction)
+        self.image = pygame.transform.rotate(self.image, self.direction) #pygame.image.load("../assets/png/playerCar.png")
         self.rect = self.image.get_rect()
         self.rect.center = self.position
 
 class PoliceCar(Car):
     """The police car"""
-    def __init__(self, position=(505, 660), speed=0, direction=0):
+    def __init__(self, position=(505, 700), speed=0, direction=0):
         Car.__init__(self, position, speed, direction)
+        self.image = pygame.image.load("../assets/png/policeCar.png")
 
 class UserCar(Car):
     """The car the user controls"""
-    def __init__(self, scroller, position=(505, 600), speed=0, direction=0):
+    def __init__(self, scroller, position=(505, 450), speed=0, direction=0):
         Car.__init__(self, position, speed, direction)
         self.scroller = scroller
+        self.image = pygame.image.load("../assets/png/playerCar.png")
 
     def accelerate(self, pixels=2):
         self.scroller.speed += pixels
         if self.scroller.speed > self.MAX_SPEED:
             self.scroller.speed = self.MAX_SPEED
-    def decelerate(self, pixels=2):
-        self.scroller.speed -= pixels
-        if self.scroller.speed < -self.MAX_SPEED:
+        elif self.scroller.speed < -self.MAX_SPEED:
             self.scroller.speed = -self.MAX_SPEED
 
 class DummyCar(Car):
@@ -68,14 +74,15 @@ class DummyCar(Car):
     def __init__(self, scroller, position, speed, direction):
         Car.__init__(self, position, speed, direction)
         self.scroller = scroller
+        self.image = pygame.image.load("../assets/png/playerCar.png")
 
     def update(self):
         x, y = self.position
         rad = self.direction * math.pi / 180
         x += -self.speed * math.sin(rad)
-        y += -self.speed * math.cos(rad) - self.scroller.speed
+        y += -self.speed * math.cos(rad) + self.scroller.speed
         self.position = (x, y)
-        self.image = pygame.transform.rotate(pygame.image.load("../assets/png/playerCar.png"), self.direction)
+        self.image = pygame.transform.rotate(self.image, self.direction)
         self.rect = self.image.get_rect()
         self.rect.center = self.position
 
@@ -105,24 +112,21 @@ while True:
             pygame.quit()
             exit()
         if not hasattr(event, 'key'): continue
-        down = event.type == KEYDOWN
-        if event.key == K_RIGHT:
-            rightDown = down
-        elif event.key == K_LEFT:
-            leftDown = down
-        elif event.key == K_UP:
-            upDown = down
-        elif event.key == K_DOWN:
-            downDown = down
-        elif event.key == K_ESCAPE: sys.exit(0) # TODO: load the main menu
-    if rightDown:
-        car.turnRight()
-    elif leftDown:
-        car.turnLeft()
-    elif upDown:
-        car.accelerate()
-    elif downDown:
-        car.decelerate()
+        if event.type == KEYDOWN:
+            if event.key == K_RIGHT:
+                car.startTurning(-5)
+            elif event.key == K_LEFT:
+                car.startTurning()
+            elif event.key == K_UP:
+                car.startAcceleration()
+            elif event.key == K_DOWN:
+                car.startAcceleration(-2)
+            elif event.key == K_ESCAPE: sys.exit(0) # TODO: load the main menu
+        else:
+            if event.key == K_RIGHT or event.key == K_LEFT:
+                car.stopTurning()
+            elif event.key == K_UP or event.key == K_DOWN:
+                car.stopAcceleration()
 
     # RENDERING
     SCREEN.fill((0,0,0))
