@@ -58,6 +58,8 @@ while True:
 
     # Render the frame
     SCREEN.fill((0,0,0))
+    scroller.background.update()
+    scroller.background.draw(SCREEN)
     scroller.cars.update()
     scroller.cars.draw(SCREEN)
     carGroup.update()
