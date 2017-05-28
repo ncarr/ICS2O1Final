@@ -2,21 +2,32 @@ import pygame
 
 class Background(pygame.sprite.Sprite):
     """The tiled, scrolling background"""
-    def __init__(self, scroller, top):
+    ROAD_SURFACE = pygame.image.load("../assets/png/road.png")
+    def __init__(self, scroller, top, above=None, below=None):
         super().__init__()
         self.scroller = scroller
-        self.image = pygame.image.load("../assets/png/road.png")
+        self.image = self.__class__.ROAD_SURFACE
         self.rect = self.image.get_rect()
-        self.rect.center = (550, top)
-        self.top = top
+        self.rect.midtop = (505, top)
+        self.above = above
+        self.below = below
     def update(self):
         """Push each background down at the speed of the car every frame"""
-        # Calculate the new position of the background
-        self.top -= self.scroller.deltaY
-        if not -695 <= self.top <= 695:
-            if self.scroller.deltaY > 0:
-                self.top = 695
-            else:
-                self.top = -695
-        # Pygame uses self.rect to determine where to draw the sprite
-        self.rect.top = self.top
+        self.rect.top -= self.scroller.deltaY
+        # If the tile is off screen
+        if not -self.rect.height <= self.rect.top <= 695:
+            # Announce to its neighbours that it doesn't exist
+            if self.above:
+                self.above.below = None
+            if self.below:
+                self.below.above = None
+            # Remove itself from all groups
+            self.kill()
+        # If there is empty space below, fill it
+        elif self.rect.top < 0 and not self.below:
+            self.below = self.__class__(self.scroller, self.rect.top + self.rect.height, self)
+            self.scroller.background.add(self.below)
+        # If there is empty space above, fill it
+        elif self.rect.top > 0 and not self.above:
+            self.above = self.__class__(self.scroller, self.rect.top - self.rect.height, None, self)
+            self.scroller.background.add(self.above)
