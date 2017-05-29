@@ -3,7 +3,7 @@ import pygame
 
 class Car(pygame.sprite.Sprite):
     """All cars inherit this class"""
-    MAX_SPEED = 20
+    MAX_SPEED = 15
     def __init__(self, position, speed, direction):
         # Call pygame's sprite constructor
         super().__init__()

@@ -20,7 +20,7 @@ pygame.display.set_icon(pygame.image.load("../design/icon.png"))
 CLOCK = pygame.time.Clock()
 # Create all sprites and group them
 scroller = BackgroundScroller()
-scroller.addDummyCar((512, 300), 1, 0)
+scroller.addDummyCar((512, 300), 10, 0)
 car = UserCar(scroller)
 carGroup = pygame.sprite.GroupSingle(car)
 policeCar = PoliceCar()
