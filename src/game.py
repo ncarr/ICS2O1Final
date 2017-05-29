@@ -12,6 +12,7 @@ from Car import Car
 from UserCar import UserCar
 from DummyCar import DummyCar
 from PoliceCar import PoliceCar
+from PauseMenu import Pause
 # Open a new 1010x695 window with the game's name and icon
 SCREEN = pygame.display.set_mode((1010, 695))
 pygame.display.set_caption("Turbulent Tailing")
@@ -48,7 +49,8 @@ while True:
                 car.startAcceleration()
             elif event.key == K_DOWN:
                 car.startAcceleration(-2)
-            elif event.key == K_ESCAPE: pass # TODO: load the pause menu
+            elif event.key == K_ESCAPE:
+                Pause(CLOCK, SCREEN)
         # If you lifted your finger off the key
         else:
             if event.key == K_RIGHT or event.key == K_LEFT:
