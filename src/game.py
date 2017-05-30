@@ -59,7 +59,7 @@ while True:
                 car.stopAcceleration()
 
     # Render the frame
-    SCREEN.fill((0,0,0))
+    SCREEN.fill((76,175,80))
     scroller.background.update()
     scroller.background.draw(SCREEN)
     scroller.cars.update()
