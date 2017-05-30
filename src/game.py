@@ -23,12 +23,11 @@ pygame.display.set_icon(pygame.image.load("../design/icon.png"))
 CLOCK = pygame.time.Clock()
 # Create all sprites and group them
 scroller = BackgroundScroller()
-scroller.addDummyCar((512, 300), 10, 0)
+scroller.addDummyCar((512, 200), 10, 0)
 car = UserCar(scroller)
 carGroup = pygame.sprite.GroupSingle(car)
 policeCar = PoliceCar()
 policeCarGroup = pygame.sprite.GroupSingle(policeCar)
-
 # Main event loop
 while True:
     # Limit the game to 60 fps
@@ -73,4 +72,12 @@ while True:
     carGroup.draw(SCREEN)
     policeCarGroup.update()
     policeCarGroup.draw(SCREEN)
+    carCollide = pygame.sprite.spritecollide(car, scroller.cars, False)
+    # Collision
+    for sprite in carCollide:
+        sprite.speed = 0
+        car.speed = 0
+        car.stopTurning()
+        scroller.deltaY = 0
+
     pygame.display.flip()
