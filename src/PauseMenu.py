@@ -1,4 +1,5 @@
 import pygame
+from Button import Button
 
 def Pause(CLOCK, SCREEN):
     # Load the image and set the size and position to overlay the screen
@@ -7,6 +8,7 @@ def Pause(CLOCK, SCREEN):
     rect.topleft = (0, 0)
     # Draw the image on top of the screen
     SCREEN.blit(image, rect)
+    play = pygame.sprite.Group(Button((300, 50), (505, 400)))
     # Update the screen
     pygame.display.flip()
     while True:
@@ -18,3 +20,6 @@ def Pause(CLOCK, SCREEN):
             # Check to see if the player has unpaused the game
             if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
                 return True
+            play.update()
+            play.draw(SCREEN)
+            pygame.display.flip()
