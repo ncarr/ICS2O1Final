@@ -24,3 +24,4 @@ class UserCar(Car):
     def deltaY(self, rad):
         """Keep the car in the same place on the screen"""
         return 0
+    
