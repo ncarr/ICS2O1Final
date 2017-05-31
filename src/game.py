@@ -15,6 +15,7 @@ from PoliceCar import PoliceCar
 from PauseMenu import Pause
 from GameOver import Lose
 
+pygame.init()
 # Open a new 1010x695 window with the game's name and icon
 SCREEN = pygame.display.set_mode((1010, 695))
 pygame.display.set_caption("Turbulent Tailing")
