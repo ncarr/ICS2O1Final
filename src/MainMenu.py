@@ -1,31 +1,29 @@
 import pygame
 from Button import Button
+from EventLoop import EventLoop
 
 class MainMenu(object):
-    play = False
     def __init__(self, SCREEN):
         # Load the image and set the size and position to overlay the screen
-        CLOCK = pygame.time.Clock()
         image = pygame.image.load("../assets/png/mainMenu.png")
+        # Create the play button and draw it onto the image
+        playButton = Button((400, 100), (505, 400), "Play")
+        image.blit(playButton.image, playButton.rect)
+        # Find the image's position
         rect = image.get_rect()
         rect.topleft = (0, 0)
         # Draw the image on top of the screen
         SCREEN.blit(image, rect)
-        playButton = Button((400, 100), (505, 400), "Play")
-
-        # Update the screen
+        # Output the first frame
         pygame.display.flip()
-        while True:
-            CLOCK.tick(60)
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    pygame.quit()
-                    exit()
+        # Create a new event loop
+        loop = EventLoop()
+        # Continue to the game if they click play
+        playButton.onClick(loop.stop)
+        # When a new frame needs to be rendered, update the button
+        @loop.onUpdate
+        def update():
             playButton.update()
-            SCREEN.blit(playButton.image,playButton.rect)
-            pygame.display.flip()
-            if self.__class__.play:
-                return True
-        @playButton.onClick
-        def play():
-            self.__class__.play = True
+            SCREEN.blit(playButton.image, playButton.rect)
+        # Start animating
+        loop.start()
