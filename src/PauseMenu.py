@@ -6,6 +6,8 @@ from EventLoop import EventLoop
 def Pause(SCREEN, game):
     # Load the image and set the size and position to overlay the screen
     image = pygame.image.load("../assets/png/pause.png")
+    rect = image.get_rect()
+    rect.topleft = (0, 0)
     # Load and display the buttons
     playButton = Button((400, 100), (505, 305), "Resume")
     newGameButton = Button((400, 100), (505, 425), "New Game")
@@ -13,8 +15,6 @@ def Pause(SCREEN, game):
     image.blit(playButton.image, playButton.rect)
     image.blit(newGameButton.image, newGameButton.rect)
     image.blit(quitButton.image, quitButton.rect)
-    rect = image.get_rect()
-    rect.topleft = (0, 0)
     # Draw the image on top of the screen
     SCREEN.blit(image, rect)
     # Create an event loop

@@ -8,7 +8,6 @@ import pygame
 from pygame.locals import *
 from MainMenu import MainMenu
 from game import Game
-from GameOver import Lose
 
 pygame.init()
 # Open a new 1010x695 window with the game's name and icon
@@ -18,4 +17,3 @@ pygame.display.set_icon(pygame.image.load("../design/icon.png"))
 MainMenu(SCREEN)
 while True:
     Game(SCREEN)
-    Lose(SCREEN)

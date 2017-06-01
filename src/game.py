@@ -43,7 +43,7 @@ class Game(object):
                 elif event.key == K_ESCAPE:
                     Pause(SCREEN, self)
                 elif event.key == K_l:
-                    loop.stop()
+                    Lose(SCREEN, self)
 
             # If you lifted your finger off the key
             else:
