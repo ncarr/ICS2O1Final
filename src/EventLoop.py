@@ -23,8 +23,11 @@ class EventLoop(object):
                 if event.type == pygame.QUIT:
                     pygame.quit()
                     exit()
+                # Call the user-defined event processing hook
                 self.eventProcessor(event)
+            # Call the user-defined update hook
             self.updator()
+            # Output the frame to the display
             pygame.display.flip()
     def stop(self):
         self.processing = False
