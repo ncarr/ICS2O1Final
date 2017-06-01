@@ -25,7 +25,7 @@ class Game(object):
         policeCar = PoliceCar()
         policeCarGroup = pygame.sprite.GroupSingle(policeCar)
 
-        loop = EventLoop()
+        self.loop = loop = EventLoop()
         @loop.onEvent
         def event(event):
             # Do nothing else if the event was not a keypress
@@ -41,7 +41,7 @@ class Game(object):
                 elif event.key == K_DOWN:
                     car.startAcceleration(-2)
                 elif event.key == K_ESCAPE:
-                    Pause(SCREEN)
+                    Pause(SCREEN, self)
                 elif event.key == K_l:
                     loop.stop()
 

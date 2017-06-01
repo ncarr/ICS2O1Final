@@ -16,5 +16,6 @@ SCREEN = pygame.display.set_mode((1010, 695))
 pygame.display.set_caption("Turbulent Tailing")
 pygame.display.set_icon(pygame.image.load("../design/icon.png"))
 MainMenu(SCREEN)
-Game(SCREEN)
-Lose(SCREEN)
+while True:
+    Game(SCREEN)
+    Lose(SCREEN)
