@@ -37,12 +37,12 @@ class Button(pygame.sprite.Sprite):
                     self.clicking = True
                     self.image.fill((100, 100, 100))
                     self.image.blit(self.stamp, [25, 25])
-                    self.click()
             # If you just stopped clicking
             elif self.clicking:
                 self.clicking = False
                 self.image.fill((127, 127, 127))
                 self.image.blit(self.stamp, [25, 25])
+                self.click()
         # If you just stopped hovering
         elif self.hovering:
             self.hovering = False

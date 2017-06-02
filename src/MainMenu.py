@@ -5,43 +5,49 @@ from Help import Help
 
 class MainMenu(object):
     def __init__(self, SCREEN):
+        self.SCREEN = SCREEN
         # Load the image and set the size and position to overlay the screen
-        image = pygame.image.load("../assets/png/mainMenu.png")
-        rect = image.get_rect()
-        rect.topleft = (0, 0)
+        self.image = pygame.image.load("../assets/png/mainMenu.png")
+        self.rect = self.image.get_rect()
+        self.rect.topleft = (0, 0)
         # Create the play button and draw it onto the image
-        playButton = Button((400, 100), (505, 355), "Play")
-        helpButton = Button((400, 100), (505, 475), "Help")
-        quitButton = Button((400, 100), (505, 590), "Quit")
-        image.blit(playButton.image, playButton.rect)
-        image.blit(helpButton.image, helpButton.rect)
-        image.blit(quitButton.image, quitButton.rect)
-        # Draw the image on top of the screen
-        SCREEN.blit(image, rect)
-        # Output the first frame
-        pygame.display.flip()
+        self.playButton = Button((400, 100), (505, 355), "Play")
+        self.helpButton = Button((400, 100), (505, 475), "Help")
+        self.quitButton = Button((400, 100), (505, 590), "Quit")
+
+        self.drawFirstFrame()
         # Create a new event loop
         loop = EventLoop()
         # Continue to the game if they click play
-        playButton.onClick(loop.stop)
+        self.playButton.onClick(loop.stop)
         # Exit the game
-        @quitButton.onClick
+        @self.quitButton.onClick
         def quit():
             pygame.quit()
             exit()
         # Help screen
-        @helpButton.onClick
+        @self.helpButton.onClick
         def help():
             Help(SCREEN)
-            print ('literally anything')
+            self.drawFirstFrame()
+
         # When a new frame needs to be rendered, update the button
         @loop.onUpdate
         def update():
-            playButton.update()
-            SCREEN.blit(playButton.image, playButton.rect)
-            helpButton.update()
-            SCREEN.blit(helpButton.image, helpButton.rect)
-            quitButton.update()
-            SCREEN.blit(quitButton.image, quitButton.rect)
+            self.playButton.update()
+            SCREEN.blit(self.playButton.image, self.playButton.rect)
+            self.helpButton.update()
+            SCREEN.blit(self.helpButton.image, self.helpButton.rect)
+            self.quitButton.update()
+            SCREEN.blit(self.quitButton.image, self.quitButton.rect)
         # Start animating
         loop.start()
+
+    def drawFirstFrame(self):
+        self.image.blit(self.playButton.image, self.playButton.rect)
+        self.image.blit(self.helpButton.image, self.helpButton.rect)
+        self.image.blit(self.quitButton.image, self.quitButton.rect)
+        # Draw the image on top of the screen
+        self.SCREEN.blit(self.image, self.rect)
+        # Output the first frame
+        pygame.display.flip()

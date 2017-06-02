@@ -14,6 +14,7 @@ class EventLoop(object):
     def start(self):
         """Start a basic event loop with the supplied hooks"""
         CLOCK = pygame.time.Clock()
+        self.processing = True
         while self.processing:
             # Limit the game to 60 fps
             CLOCK.tick(60)
@@ -33,6 +34,7 @@ class EventLoop(object):
         """Start an event loop which counts frames with the supplied hooks"""
         CLOCK = pygame.time.Clock()
         self.frames = 0
+        self.processing = True
         while self.processing:
             # Limit the game to 60 fps
             CLOCK.tick(60)
