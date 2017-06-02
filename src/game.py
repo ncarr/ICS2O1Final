@@ -86,10 +86,10 @@ class Game(object):
             if frames % 60 == 0:
                 # Black out the screen and render the number of seconds left
                 SCREEN.fill((0, 0, 0))
-                stamp = font.render(str(5 - frames // 60), True, (149, 152, 154))
+                stamp = font.render(str(3 - frames // 60), True, (149, 152, 154))
                 SCREEN.blit(stamp, [505, 347])
-            # Stop the countdown on 0
-            if frames >= 300:
+            # Stop the countdown just before 0
+            if frames >= 179:
                 loop.stop()
         # Start the loop, but give the number of frames passed to the update function
         loop.startFrames()
