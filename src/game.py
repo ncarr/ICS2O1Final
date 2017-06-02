@@ -17,6 +17,7 @@ from GameOver import Lose
 
 class Game(object):
     def __init__(self, SCREEN):
+        self.__class__.countDown(SCREEN)
         # Create all sprites and group them
         scroller = BackgroundScroller()
         scroller.addDummyCar((512, 200), 10, 0)
@@ -27,7 +28,7 @@ class Game(object):
 
         self.loop = loop = EventLoop()
         @loop.onEvent
-        def event(event):
+        def event(event, frames):
             # Do nothing else if the event was not a keypress
             if not hasattr(event, 'key'): return True
             # If you pressed a key
@@ -52,7 +53,7 @@ class Game(object):
                 elif event.key == K_UP or event.key == K_DOWN:
                     car.stopAcceleration()
         @loop.onUpdate
-        def update():
+        def update(frames):
             # Render the frame
             SCREEN.fill((76,175,80))
             scroller.background.update()
@@ -70,4 +71,25 @@ class Game(object):
                 car.speed = 0
                 car.stopTurning()
                 scroller.deltaY = 0
-        loop.start()
+        loop.startFrames()
+
+    @staticmethod
+    def countDown(SCREEN):
+        # Create an event loop
+        loop = EventLoop()
+        # Define the font
+        font = pygame.font.SysFont('Segoe UI', 72, False, False)
+        # On every frame
+        @loop.onUpdate
+        def frame(frames):
+            # Check to see if 1 second has passed
+            if frames % 60 == 0:
+                # Black out the screen and render the number of seconds left
+                SCREEN.fill((0, 0, 0))
+                stamp = font.render(str(5 - frames // 60), True, (149, 152, 154))
+                SCREEN.blit(stamp, [505, 347])
+            # Stop the countdown on 0
+            if frames >= 300:
+                loop.stop()
+        # Start the loop, but give the number of frames passed to the update function
+        loop.startFrames()
