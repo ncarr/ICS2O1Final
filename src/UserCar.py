@@ -7,7 +7,7 @@ class UserCar(Car):
     def __init__(self, scroller, position=(505, 450), speed=0, direction=0):
         super().__init__(position, speed, direction)
         self.scroller = scroller
-        self.imageSource = pygame.image.load("../assets/png/playerCar.png")
+        self.imageSource = pygame.image.load("playerCar.png")
 
     def accelerate(self, pixels=2):
         """Perform normal acceleration but also update the speed the background is moving"""
@@ -24,4 +24,3 @@ class UserCar(Car):
     def deltaY(self, rad):
         """Keep the car in the same place on the screen"""
         return 0
-    

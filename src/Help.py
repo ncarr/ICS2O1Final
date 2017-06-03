@@ -5,7 +5,7 @@ from EventLoop import EventLoop
 class Help(object):
     def __init__(self, SCREEN):
         # Load the image and set the size and position
-        image = pygame.image.load("../assets/png/help.png")
+        image = pygame.image.load("help.png")
         rect = image.get_rect()
         rect.topleft = (0, 0)
         # Create the back button and draw it onto the image

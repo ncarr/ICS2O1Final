@@ -1,3 +1,4 @@
+import sys
 import pygame
 from Button import Button
 from EventLoop import EventLoop
@@ -5,7 +6,7 @@ from EventLoop import EventLoop
 
 def Pause(SCREEN, game):
     # Load the image and set the size and position to overlay the screen
-    image = pygame.image.load("../assets/png/pause.png")
+    image = pygame.image.load("pause.png")
     rect = image.get_rect()
     rect.topleft = (0, 0)
     # Load and display the buttons
@@ -32,7 +33,7 @@ def Pause(SCREEN, game):
     @quitButton.onClick
     def quit():
         pygame.quit()
-        exit()
+        sys.exit()
     # Update the screen
     pygame.display.flip()
     @loop.onEvent

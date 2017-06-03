@@ -1,3 +1,4 @@
+import sys
 import pygame
 
 class EventLoop(object):
@@ -23,7 +24,7 @@ class EventLoop(object):
                 # If the user presses the close button, end the game
                 if event.type == pygame.QUIT:
                     pygame.quit()
-                    exit()
+                    sys.exit()
                 # Call the user-defined event processing hook
                 self.eventProcessor(event)
             # Call the user-defined update hook
@@ -43,7 +44,7 @@ class EventLoop(object):
                 # If the user presses the close button, end the game
                 if event.type == pygame.QUIT:
                     pygame.quit()
-                    exit()
+                    sys.exit()
                 # Call the user-defined event processing hook
                 self.eventProcessor(event, self.frames)
             # Call the user-defined update hook

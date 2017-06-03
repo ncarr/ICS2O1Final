@@ -1,3 +1,4 @@
+import sys
 import pygame
 from Button import Button
 from EventLoop import EventLoop
@@ -7,7 +8,7 @@ class MainMenu(object):
     def __init__(self, SCREEN):
         self.SCREEN = SCREEN
         # Load the image and set the size and position to overlay the screen
-        self.image = pygame.image.load("../assets/png/mainMenu.png")
+        self.image = pygame.image.load("mainMenu.png")
         self.rect = self.image.get_rect()
         self.rect.topleft = (0, 0)
         # Create the play button and draw it onto the image
@@ -24,7 +25,7 @@ class MainMenu(object):
         @self.quitButton.onClick
         def quit():
             pygame.quit()
-            exit()
+            sys.exit()
         # Help screen
         @self.helpButton.onClick
         def help():

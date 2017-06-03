@@ -2,7 +2,7 @@ import pygame
 
 class Background(pygame.sprite.Sprite):
     """The tiled, scrolling background"""
-    ROAD_SURFACE = pygame.image.load("../assets/png/road.png")
+    ROAD_SURFACE = pygame.image.load("road.png")
     def __init__(self, scroller, top, above=None, below=None):
         # Call the sprite constructor
         super().__init__()
