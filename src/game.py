@@ -18,10 +18,12 @@ from GameOver import Lose
 class Game(object):
     def __init__(self, SCREEN):
         self.__class__.countDown(SCREEN)
+        self.distance = 0
+        self.maxDistance = 0
         # Create all sprites and group them
         scroller = BackgroundScroller()
         scroller.addDummyCar((512, 200), 10, 0)
-        car = UserCar(scroller)
+        car = UserCar(scroller, self)
         carGroup = pygame.sprite.GroupSingle(car)
         policeCar = PoliceCar()
         policeCarGroup = pygame.sprite.GroupSingle(policeCar)
@@ -54,6 +56,11 @@ class Game(object):
                     car.stopAcceleration()
         @loop.onUpdate
         def update(frames):
+            # Stop the user if they have gone too far in reverse
+            if self.maxDistance - 695 > self.distance and scroller.deltaY > 0:
+                car.stopAcceleration()
+                car.speed = 0
+                scroller.deltaY = 0
             # Render the frame
             SCREEN.fill((76,175,80))
             scroller.background.update()

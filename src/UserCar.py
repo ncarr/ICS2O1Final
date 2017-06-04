@@ -4,9 +4,10 @@ from Car import Car
 
 class UserCar(Car):
     """The car the user controls"""
-    def __init__(self, scroller, position=(505, 450), speed=0, direction=0):
+    def __init__(self, scroller, game, position=(505, 450), speed=0, direction=0):
         super().__init__(position, speed, direction)
         self.scroller = scroller
+        self.game = game
         self.imageSource = pygame.image.load("playerCar.png")
 
     def accelerate(self, pixels=2):
@@ -14,6 +15,9 @@ class UserCar(Car):
         super().accelerate(pixels)
         radians = self.direction * math.pi / 180
         self.scroller.deltaY = super().deltaY(radians)
+        self.game.distance -= self.scroller.deltaY
+        if self.game.distance > self.game.maxDistance:
+            self.game.maxDistance = self.game.distance
 
     def deltaX(self, rad):
         """Keep the car from falling off the screen"""
