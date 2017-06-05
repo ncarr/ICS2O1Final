@@ -57,6 +57,8 @@ class Car(pygame.sprite.Sprite):
         self.position = (x, y)
         # Rotate it to its new angle
         self.image = pygame.transform.rotate(self.imageSource, self.direction)
+        # Set its mask to its newly rotated image, we use it for collision detection
+        self.mask = pygame.mask.from_surface(self.image)
         # Pygame uses self.rect to determine where to draw the sprite
         self.rect = self.image.get_rect()
         self.rect.center = self.position

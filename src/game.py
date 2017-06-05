@@ -56,6 +56,15 @@ class Game(object):
                     car.stopTurning()
                 elif event.key == K_UP or event.key == K_DOWN:
                     car.stopAcceleration()
+        @loop.beforeEvents
+        def checkCollision(frames):
+            # Collision
+            carCollide = pygame.sprite.spritecollide(car, scroller.cars, False, pygame.sprite.collide_mask)
+            for sprite in carCollide:
+                sprite.speed = 0
+                car.speed = 0
+                car.stopTurning()
+                scroller.deltaY = 0
         @loop.onUpdate
         def update(frames):
             # Stop the user if they have gone too far in reverse
@@ -73,7 +82,6 @@ class Game(object):
             carGroup.draw(SCREEN)
             policeCarGroup.update()
             policeCarGroup.draw(SCREEN)
-            carCollide = pygame.sprite.spritecollide(car, scroller.cars, False)
             self.obstacle.update()
             # Update the number of points
             # Define the font
@@ -83,12 +91,6 @@ class Game(object):
             rect.right = 960
             rect.top = 50
             SCREEN.blit(stamp, rect)
-            # Collision
-            for sprite in carCollide:
-                sprite.speed = 0
-                car.speed = 0
-                car.stopTurning()
-                scroller.deltaY = 0
         loop.startFrames()
 
     @staticmethod

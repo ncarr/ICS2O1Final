@@ -8,6 +8,9 @@ class DummyCar(Car):
         super().__init__(position, speed, direction)
         self.scroller = scroller
         self.imageSource = pygame.image.load("playerCar.png")
+        self.image = self.imageSource
+        self.mask = pygame.mask.from_surface(self.image)
+        self.rect = self.image.get_rect()
 
     def deltaY(self, rad):
         """Move DummyCar instances relative to the background"""

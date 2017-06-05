@@ -4,10 +4,17 @@ import pygame
 class EventLoop(object):
     def __init__(self):
         self.processing = True
+    def beforeEvents(self, beforeUpdator):
+        """First function to be called every frame, even before event handling"""
+        self.beforeUpdator = beforeUpdator
     def onEvent(self, event):
+        """Function to be called for every event received"""
         self.eventProcessor = event
     def onUpdate(self, update):
+        """Function to call every frame after events were handled"""
         self.updator = update
+    def beforeUpdator(self, frames=None):
+        pass
     def eventProcessor(self, event, frames=None):
         pass
     def updator(self, frames=None):
@@ -19,6 +26,8 @@ class EventLoop(object):
         while self.processing:
             # Limit the game to 60 fps
             CLOCK.tick(60)
+            # Call the user-defined pre-event-processing hook
+            self.beforeUpdator()
             # Iterate through all events
             for event in pygame.event.get():
                 # If the user presses the close button, end the game
@@ -39,6 +48,8 @@ class EventLoop(object):
         while self.processing:
             # Limit the game to 60 fps
             CLOCK.tick(60)
+            # Call the user-defined pre-event-processing hook
+            self.beforeUpdator(self.frames)
             # Iterate through all events
             for event in pygame.event.get():
                 # If the user presses the close button, end the game
