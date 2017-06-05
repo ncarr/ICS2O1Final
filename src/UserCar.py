@@ -31,3 +31,11 @@ class UserCar(Car):
     def deltaY(self, rad):
         """Keep the car in the same place on the screen"""
         return 0
+
+    def update(self):
+        """Slowly decelerate the car over time"""
+        self.speed *= 0.999
+        radians = self.direction * math.pi / 180
+        self.scroller.deltaY = super().deltaY(radians)
+        # Also do normal car things
+        super().update()
