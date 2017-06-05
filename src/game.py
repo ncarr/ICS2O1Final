@@ -20,6 +20,7 @@ class Game(object):
         self.__class__.countDown(SCREEN)
         self.distance = 0
         self.maxDistance = 0
+        self.bonusPoints = 0
         # Create all sprites and group them
         scroller = BackgroundScroller()
         scroller.addDummyCar((512, 200), 10, 0)
@@ -72,6 +73,14 @@ class Game(object):
             policeCarGroup.update()
             policeCarGroup.draw(SCREEN)
             carCollide = pygame.sprite.spritecollide(car, scroller.cars, False)
+            # Update the number of points
+            # Define the font
+            font = pygame.font.SysFont('Segoe UI', 48, True, False)
+            stamp = font.render(str(int(self.score())), True, (255, 255, 255))
+            rect = stamp.get_rect()
+            rect.right = 960
+            rect.top = 50
+            SCREEN.blit(stamp, rect)
             # Collision
             for sprite in carCollide:
                 sprite.speed = 0
@@ -100,3 +109,6 @@ class Game(object):
                 loop.stop()
         # Start the loop, but give the number of frames passed to the update function
         loop.startFrames()
+
+    def score(self):
+        return self.maxDistance * 10 + self.bonusPoints
