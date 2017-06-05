@@ -147,3 +147,6 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
+
+# High scores
+src/highScore.txt
