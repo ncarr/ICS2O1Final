@@ -14,6 +14,7 @@ from DummyCar import DummyCar
 from PoliceCar import PoliceCar
 from PauseMenu import Pause
 from GameOver import Lose
+from Obstacle import Obstacle
 
 class Game(object):
     def __init__(self, SCREEN):
@@ -21,9 +22,9 @@ class Game(object):
         self.distance = 0
         self.maxDistance = 0
         self.bonusPoints = 0
+        self.obstacle = Obstacle(self)
         # Create all sprites and group them
-        scroller = BackgroundScroller()
-        scroller.addDummyCar((512, 200), 10, 0)
+        self.scroller = scroller = BackgroundScroller()
         car = UserCar(scroller, self)
         carGroup = pygame.sprite.GroupSingle(car)
         policeCar = PoliceCar()
@@ -73,6 +74,7 @@ class Game(object):
             policeCarGroup.update()
             policeCarGroup.draw(SCREEN)
             carCollide = pygame.sprite.spritecollide(car, scroller.cars, False)
+            self.obstacle.update()
             # Update the number of points
             # Define the font
             font = pygame.font.SysFont('Segoe UI', 48, True, False)
