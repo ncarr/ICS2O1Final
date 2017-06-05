@@ -14,7 +14,7 @@ class Car(pygame.sprite.Sprite):
         self.speedIncrease = 0
         self.turnDirection = 0
 
-    def startTurning(self, degrees=5):
+    def startTurning(self, degrees=2):
         """Start turning 'degrees' degrees counterclockwise every frame until stopTurning is called"""
         self.turnDirection = degrees
     def stopTurning(self):
