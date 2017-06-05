@@ -11,6 +11,17 @@ def Lose(SCREEN, game):
     # Load and display the buttons
     newGameButton = Button((400, 100), (505, 425), "New Game")
     quitButton = Button((400, 100), (505, 545), "Quit")
+    # Load the high score
+    with open("highScore.txt", "r") as f:
+        highScore = f.read()
+    if game.score() > int(highScore):
+        with open("highScore.txt", "w") as f:
+            f.write(str(int(game.score())))
+        font = pygame.font.SysFont('Segoe UI', 24, True, False)
+        text = font.render("New high score: " + str(int(game.score())), True, (255, 255, 255))
+        textRect = text.get_rect()
+        textRect.center = (505, 275)
+        image.blit(text, textRect)
     image.blit(newGameButton.image, newGameButton.rect)
     image.blit(quitButton.image, quitButton.rect)
     # Draw the image on top of the screen

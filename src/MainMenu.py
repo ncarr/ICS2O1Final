@@ -16,6 +16,14 @@ class MainMenu(object):
         self.helpButton = Button((400, 100), (505, 475), "Help")
         self.quitButton = Button((400, 100), (505, 590), "Quit")
 
+        # Load the high score
+        with open("highScore.txt") as f:
+            self.highScore = f.read()
+        font = pygame.font.SysFont('Segoe UI', 24, True, False)
+        self.text = font.render("High score: " + self.highScore, True, (255, 255, 255))
+        self.textRect = self.text.get_rect()
+        self.textRect.center = (505, 275)
+
         self.drawFirstFrame()
         # Create a new event loop
         loop = EventLoop()
@@ -48,6 +56,8 @@ class MainMenu(object):
         self.image.blit(self.playButton.image, self.playButton.rect)
         self.image.blit(self.helpButton.image, self.helpButton.rect)
         self.image.blit(self.quitButton.image, self.quitButton.rect)
+        # Write the high score to the screen
+        self.image.blit(self.text, self.textRect)
         # Draw the image on top of the screen
         self.SCREEN.blit(self.image, self.rect)
         # Output the first frame
