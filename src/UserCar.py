@@ -12,6 +12,7 @@ class UserCar(Car):
         self.image = self.imageSource
         self.mask = pygame.mask.from_surface(self.image)
         self.rect = self.image.get_rect()
+        self.colliding = None
 
     def accelerate(self, pixels=2):
         """Perform normal acceleration but also update the speed the background is moving"""

@@ -63,14 +63,16 @@ class Game(object):
             carCollide = pygame.sprite.spritecollide(car, scroller.cars, False, pygame.sprite.collide_mask)
             for sprite in carCollide:
                 sprite.speed = 0
-                car.speed = 0
-                car.stopTurning()
-                scroller.deltaY = 0
             coneCollide = pygame.sprite.spritecollide(car, scroller.trafficCones, False, pygame.sprite.collide_mask)
-            if coneCollide:
-                car.speed = 0
-                car.stopTurning()
-                scroller.deltaY = 0
+            if coneCollide or carCollide:
+                if not car.colliding:
+                    car.colliding = coneCollide + carCollide
+                    car.speed = 0
+                    car.stopTurning()
+                    scroller.deltaY = 0
+            else:
+                car.colliding = None
+                # Turn the car in the opposite direction
         @loop.onUpdate
         def update(frames):
             # Stop the user if they have gone too far in reverse
