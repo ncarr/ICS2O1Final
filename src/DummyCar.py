@@ -1,4 +1,5 @@
 import math
+import random
 import pygame
 from Car import Car
 
@@ -7,7 +8,7 @@ class DummyCar(Car):
     def __init__(self, scroller, position, speed, direction):
         super().__init__(position, speed, direction)
         self.scroller = scroller
-        self.imageSource = pygame.image.load("playerCar.png")
+        self.imageSource = pygame.image.load(random.choice(["blueCar.png", "greenCar.png", "yellowCar.png", "purpleCar.png", "orangeCar.png"]))
         self.image = self.imageSource
         self.mask = pygame.mask.from_surface(self.image)
         self.rect = self.image.get_rect()
