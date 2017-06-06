@@ -69,6 +69,7 @@ class Game(object):
                     car.colliding = coneCollide + carCollide
                     car.speed = 0
                     car.stopTurning()
+                    car.stopAcceleration()
                     scroller.deltaY = 0
             else:
                 car.colliding = None
