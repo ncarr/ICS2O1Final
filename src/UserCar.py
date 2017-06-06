@@ -22,6 +22,18 @@ class UserCar(Car):
         self.game.distance -= self.scroller.deltaY
         if self.game.distance > self.game.maxDistance:
             self.game.maxDistance = self.game.distance
+    def startAcceleration(self, pixels=2):
+        if self.colliding:
+            radians = self.direction * math.pi / 180
+            # Find the current distance squared between the centres
+            currentDistance = abs(self.rect.centerx + self.colliding[0].rect.centerx) ** 2 + abs(self.rect.centery + self.colliding[0].rect.centery) ** 2
+            # Find the distance squared between the centres after moving in the direction of acceleration
+            distanceAfterAccelerating = abs(self.rect.centerx - pixels * math.sin(radians) + self.colliding[0].rect.centerx) ** 2 + abs(self.rect.centery - pixels * math.cos(radians) + self.colliding[0].rect.centery) ** 2
+            # If it would move you toward the object you are already crashing into
+            if distanceAfterAccelerating < currentDistance:
+                # Stop you from accelerating
+                return False
+        super().startAcceleration(pixels)
 
     def deltaX(self, rad):
         """Keep the car from falling off the screen"""
