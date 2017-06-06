@@ -33,12 +33,16 @@ class TrafficCone(pygame.sprite.Sprite):
         super().__init__()
         self.scroller = scroller
         self.image = pygame.image.load('trafficCone.png')
+        self.mask = pygame.mask.from_surface(self.image)
         self.rect = self.image.get_rect()
         self.rect.center = centre
     def update(self):
         x, y = self.rect.center
+        # If the cone is past the farthest distance we let the user reverse to, free its memory
+        if y > 1440:
+            return self.kill()
         y -= self.scroller.deltaY
         self.rect.center = (x, y)
-        if self.game.maxDistance >= self.objectDistance:
-            self.drawObject()
-            self.createObject()
+class GenerateCone(Obstacle):
+    def newObstacle(self, position):
+        self.game.scroller.addTrafficCone(position)

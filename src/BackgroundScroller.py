@@ -8,6 +8,7 @@ class BackgroundScroller(object):
     def __init__(self, speed=2):
         # Set default properties, create empty sprite groups
         self.cars = pygame.sprite.Group()
+        self.trafficCones = pygame.sprite.Group()
         self.background = pygame.sprite.Group(Background(self, 0))
         self.deltaY = 0
 

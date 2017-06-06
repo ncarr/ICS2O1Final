@@ -14,7 +14,7 @@ from DummyCar import DummyCar
 from PoliceCar import PoliceCar
 from PauseMenu import Pause
 from GameOver import Lose
-from Obstacle import GenerateCar
+from Obstacle import GenerateCar, GenerateCone
 
 class Game(object):
     def __init__(self, SCREEN):
@@ -23,6 +23,7 @@ class Game(object):
         self.maxDistance = 0
         self.bonusPoints = 0
         self.obstacle = GenerateCar(self)
+        self.trafficCone = GenerateCone(self)
         # Create all sprites and group them
         self.scroller = scroller = BackgroundScroller()
         car = UserCar(scroller, self)
@@ -65,6 +66,11 @@ class Game(object):
                 car.speed = 0
                 car.stopTurning()
                 scroller.deltaY = 0
+            coneCollide = pygame.sprite.spritecollide(car, scroller.trafficCones, False, pygame.sprite.collide_mask)
+            if coneCollide:
+                car.speed = 0
+                car.stopTurning()
+                scroller.deltaY = 0
         @loop.onUpdate
         def update(frames):
             # Stop the user if they have gone too far in reverse
@@ -76,6 +82,8 @@ class Game(object):
             SCREEN.fill((76,175,80))
             scroller.background.update()
             scroller.background.draw(SCREEN)
+            scroller.trafficCones.update()
+            scroller.trafficCones.draw(SCREEN)
             scroller.cars.update()
             scroller.cars.draw(SCREEN)
             carGroup.update()
@@ -83,6 +91,7 @@ class Game(object):
             policeCarGroup.update()
             policeCarGroup.draw(SCREEN)
             self.obstacle.update()
+            self.trafficCone.update()
             # Update the number of points
             # Define the font
             font = pygame.font.SysFont('Segoe UI', 48, True, False)
