@@ -46,9 +46,14 @@ class UserCar(Car):
         return 0
 
     def update(self):
-        """Slowly decelerate the car over time"""
+        """Slowly decelerate the car over time and slow it on the grass"""
         self.speed *= 0.999
         radians = self.direction * math.pi / 180
         self.scroller.deltaY = super().deltaY(radians)
+        x, y = self.position
+        if x < 229 or x > 781:
+            self.MAX_SPEED = 5
+        else:
+            self.MAX_SPEED = super().MAX_SPEED
         # Also do normal car things
         super().update()
