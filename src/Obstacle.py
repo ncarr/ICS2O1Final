@@ -1,4 +1,5 @@
 from random import choice, randint
+import pygame
 class Obstacle(object):
     # Positions of centers of lanes
     lanes = [298, 436, 574, 712]
@@ -7,19 +8,37 @@ class Obstacle(object):
         self.createObject()
     def drawObject(self):
         x = choice(self.__class__.lanes)
+        self.newObstacle((x,-150))
+    # Determine when the object should appear
+    def createObject(self):
+        self.objectDistance = self.game.maxDistance + randint(2000,4000)
+    # Draw the object
+    def update(self):
+        if self.game.maxDistance >= self.objectDistance:
+            self.drawObject()
+            self.createObject()
+class GenerateCar(Obstacle):
+    def newObstacle(self, position):
         speed = 10
+        x, y = position
         # Determine which lanes the cars are in
         if x > 505:
             direction = 0
         else:
             direction = 180
         # Draw the car
-        self.game.scroller.addDummyCar((x,-150), speed, direction)
-    # Determine when the object should appear
-    def createObject(self):
-        self.objectDistance = self.game.maxDistance + randint(2000,4000)
-    # Draw the object
+        self.game.scroller.addDummyCar(position, speed, direction)
+class TrafficCone(pygame.sprite.Sprite):
+    def __init__(self, scroller, centre):
+        super().__init__()
+        self.scroller = scroller
+        self.image = pygame.image.load('trafficCone.png')
+        self.rect = self.image.get_rect()
+        self.rect.center = centre
     def update(self):
+        x, y = self.rect.center
+        y -= self.scroller.deltaY
+        self.rect.center = (x, y)
         if self.game.maxDistance >= self.objectDistance:
             self.drawObject()
             self.createObject()

@@ -14,7 +14,7 @@ from DummyCar import DummyCar
 from PoliceCar import PoliceCar
 from PauseMenu import Pause
 from GameOver import Lose
-from Obstacle import Obstacle
+from Obstacle import GenerateCar
 
 class Game(object):
     def __init__(self, SCREEN):
@@ -22,7 +22,7 @@ class Game(object):
         self.distance = 0
         self.maxDistance = 0
         self.bonusPoints = 0
-        self.obstacle = Obstacle(self)
+        self.obstacle = GenerateCar(self)
         # Create all sprites and group them
         self.scroller = scroller = BackgroundScroller()
         car = UserCar(scroller, self)

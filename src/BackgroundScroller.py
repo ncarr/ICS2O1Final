@@ -1,6 +1,7 @@
 import pygame
 from DummyCar import DummyCar
 from Background import Background
+from Obstacle import TrafficCone
 
 class BackgroundScroller(object):
     """Scrolls the background at the speed the car is going"""
@@ -15,3 +16,8 @@ class BackgroundScroller(object):
         dummyCar = DummyCar(self, coordinates, speed, direction)
         self.cars.add(dummyCar)
         return dummyCar
+
+    def addTrafficCone(self, centre):
+        trafficCone = TrafficCone(self, centre)
+        self.trafficCones.add(trafficCone)
+        return trafficCone
