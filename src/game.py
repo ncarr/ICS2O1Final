@@ -64,12 +64,19 @@ class Game(object):
             for sprite in carCollide:
                 sprite.speed = 0
             coneCollide = pygame.sprite.spritecollide(car, scroller.trafficCones, False, pygame.sprite.collide_mask)
-            if coneCollide or carCollide:
+            if carCollide:
                 if not car.colliding:
-                    car.colliding = coneCollide + carCollide
+                    car.colliding = carCollide
                     car.speed = 0
                     car.stopTurning()
                     car.stopAcceleration()
+                    scroller.deltaY = 0
+            elif coneCollide:
+                if not car.colliding:
+                    car.colliding = coneCollide
+                    car.speed = car.speed * 0.3
+                    #car.stopTurning()
+                    #car.stopAcceleration()
                     scroller.deltaY = 0
             else:
                 car.colliding = None
