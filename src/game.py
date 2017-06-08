@@ -134,4 +134,4 @@ class Game(object):
         loop.startFrames()
 
     def score(self):
-        return self.maxDistance * 10 + self.bonusPoints
+        return self.maxDistance * 0.1 + self.bonusPoints
