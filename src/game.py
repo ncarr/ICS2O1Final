@@ -39,7 +39,7 @@ class Game(object):
             # If you pressed a key
             if event.type == KEYDOWN:
                 if event.key == K_RIGHT:
-                    car.startTurning(-2)
+                    car.startTurning(-0.18)
                 elif event.key == K_LEFT:
                     car.startTurning()
                 elif event.key == K_UP:

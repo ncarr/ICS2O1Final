@@ -51,8 +51,9 @@ class UserCar(Car):
         radians = self.direction * math.pi / 180
         self.scroller.deltaY = super().deltaY(radians)
         x, y = self.position
+        # If you are on the grass, go slower
         if x < 229 or x > 781:
-            self.MAX_SPEED = 5
+            self.MAX_SPEED = 10
         else:
             self.MAX_SPEED = super().MAX_SPEED
         # Also do normal car things

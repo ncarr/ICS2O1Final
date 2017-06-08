@@ -14,7 +14,7 @@ class Car(pygame.sprite.Sprite):
         self.speedIncrease = 0
         self.turnDirection = 0
 
-    def startTurning(self, degrees=2):
+    def startTurning(self, degrees=0.18):
         """Start turning 'degrees' degrees counterclockwise every frame until stopTurning is called"""
         self.turnDirection = degrees
     def stopTurning(self):
@@ -47,7 +47,7 @@ class Car(pygame.sprite.Sprite):
     def update(self):
         """Determine how to transform the image every frame"""
         # If the start* functions were called, it would accelerate or rotate by that amount every frame, otherwise it would use 0
-        self.turn(self.turnDirection)
+        self.turn(self.turnDirection * self.speed)
         self.accelerate(self.speedIncrease)
         # Calculate the new position of the car
         x, y = self.position
