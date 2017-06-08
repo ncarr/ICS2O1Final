@@ -15,6 +15,7 @@ from PoliceCar import PoliceCar
 from PauseMenu import Pause
 from GameOver import Lose
 from Obstacle import GenerateCar, GenerateCone
+from Sound import Sound
 
 class Game(object):
     def __init__(self, SCREEN):
@@ -125,8 +126,12 @@ class Game(object):
             if frames % 60 == 0:
                 # Black out the screen and render the number of seconds left
                 SCREEN.fill((0, 0, 0))
+                countdownBg = pygame.image.load('countdownbg.png')
                 stamp = font.render(str(3 - frames // 60), True, (149, 152, 154))
-                SCREEN.blit(stamp, [505, 347])
+                stampRect = stamp.get_rect()
+                stampRect.center = (505, 347)
+                SCREEN.blit(countdownBg, (0, 0))
+                SCREEN.blit(stamp, stampRect)
             # Stop the countdown just before 0
             if frames >= 179:
                 loop.stop()
