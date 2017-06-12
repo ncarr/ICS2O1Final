@@ -10,6 +10,7 @@ class BackgroundScroller(object):
         self.cars = pygame.sprite.Group()
         self.trafficCones = pygame.sprite.Group()
         self.background = pygame.sprite.Group(Background(self, 0))
+        # This is the property that tells other objects how quickly the background is moving
         self.deltaY = 0
 
     def addDummyCar(self, coordinates, speed, direction):
@@ -19,6 +20,7 @@ class BackgroundScroller(object):
         return dummyCar
 
     def addTrafficCone(self, centre):
+        """Create a TrafficCone and add it to the trafficCones group"""
         trafficCone = TrafficCone(self, centre)
         self.trafficCones.add(trafficCone)
         return trafficCone

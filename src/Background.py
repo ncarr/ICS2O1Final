@@ -9,6 +9,7 @@ class Background(pygame.sprite.Sprite):
         # Set default properties
         self.scroller = scroller
         self.image = self.__class__.ROAD_SURFACE
+        # Get the size of the image, then set its position
         self.rect = self.image.get_rect()
         self.rect.midtop = (505, top)
         self.above = above
