@@ -4,9 +4,10 @@ from Car import Car
 
 class UserCar(Car):
     """The car the user controls"""
-    def __init__(self, scroller, policeCar, game, position=(505, 450), speed=0, direction=0):
+    def __init__(self, scroller, policeCar, game, position=(505, 450), speed=15, direction=0):
         super().__init__(position, speed, direction)
         self.scroller = scroller
+        self.policeCar = policeCar
         self.game = game
         self.imageSource = pygame.image.load("playerCar.png")
         self.image = self.imageSource
@@ -56,5 +57,6 @@ class UserCar(Car):
             self.MAX_SPEED = 10
         else:
             self.MAX_SPEED = super().MAX_SPEED
+        self.policeCar.position = (x, self.policeCar.position[1])
         # Also do normal car things
         super().update()

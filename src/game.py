@@ -27,7 +27,7 @@ class Game(object):
         self.trafficCone = GenerateCone(self)
         # Create all sprites and group them
         self.scroller = scroller = BackgroundScroller()
-        policeCar = PoliceCar()
+        policeCar = PoliceCar(scroller)
         car = UserCar(scroller, policeCar, self)
         carGroup = pygame.sprite.GroupSingle(car)
         policeCarGroup = pygame.sprite.GroupSingle(policeCar)
@@ -102,6 +102,8 @@ class Game(object):
             carGroup.draw(SCREEN)
             policeCarGroup.update()
             policeCarGroup.draw(SCREEN)
+            if pygame.sprite.spritecollide(car, policeCarGroup, False, pygame.sprite.collide_mask):
+                Lose(SCREEN, self)
             self.obstacle.update()
             self.trafficCone.update()
             # Update the number of points
