@@ -27,9 +27,9 @@ class Game(object):
         self.trafficCone = GenerateCone(self)
         # Create all sprites and group them
         self.scroller = scroller = BackgroundScroller()
-        car = UserCar(scroller, self)
-        carGroup = pygame.sprite.GroupSingle(car)
         policeCar = PoliceCar()
+        car = UserCar(scroller, policeCar, self)
+        carGroup = pygame.sprite.GroupSingle(car)
         policeCarGroup = pygame.sprite.GroupSingle(policeCar)
 
         self.loop = loop = EventLoop()
@@ -68,8 +68,7 @@ class Game(object):
             if carCollide:
                 if not car.colliding:
                     car.colliding = carCollide
-                    carSound = Sound()
-                    carSound.carHorn()
+                    Sound.carHorn()
                     car.speed = 0
                     car.stopTurning()
                     car.stopAcceleration()

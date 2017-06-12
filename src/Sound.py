@@ -1,13 +1,14 @@
 import pygame
 class Sound(object):
-    def __init__(self):
-        #self.backgroundMusic = pygame.mixer.Music('music.mp3')
-        self.hornSound = pygame.mixer.Sound('horn.wav')
-        #self.obstacleSound = pygame.mixer.Sound('collide.wav')
-    def music(self):
-        self.backgroundMusic.play(loops=-1)
-    def carHorn(self):
-        self.hornSound.play(loops=0)
-        print ('hron')
-    def obstacleSound(self):
-        self.obstacleSound.play(loops=0)
+    #backgroundMusic = pygame.mixer.Music('music.mp3')
+    hornSound = pygame.mixer.Sound('horn.ogg')
+    #obstacleSound = pygame.mixer.Sound('collide.wav')
+    @classmethod
+    def music(cls):
+        cls.backgroundMusic.play(loops=-1)
+    @classmethod
+    def carHorn(cls):
+        cls.hornSound.play(loops=0)
+    @classmethod
+    def obstacleSound(cls):
+        cls.obstacleSound.play(loops=0)

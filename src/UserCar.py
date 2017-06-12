@@ -4,7 +4,7 @@ from Car import Car
 
 class UserCar(Car):
     """The car the user controls"""
-    def __init__(self, scroller, game, position=(505, 450), speed=0, direction=0):
+    def __init__(self, scroller, policeCar, game, position=(505, 450), speed=0, direction=0):
         super().__init__(position, speed, direction)
         self.scroller = scroller
         self.game = game
