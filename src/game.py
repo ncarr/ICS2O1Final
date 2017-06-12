@@ -68,6 +68,8 @@ class Game(object):
             if carCollide:
                 if not car.colliding:
                     car.colliding = carCollide
+                    carSound = Sound()
+                    carSound.carHorn()
                     car.speed = 0
                     car.stopTurning()
                     car.stopAcceleration()
