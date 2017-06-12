@@ -76,6 +76,7 @@ class Game(object):
             elif coneCollide:
                 if not car.colliding:
                     car.colliding = coneCollide
+                    Sound.obstacleSound()
                     car.speed = car.speed * 0.3
                     #car.stopTurning()
                     #car.stopAcceleration()

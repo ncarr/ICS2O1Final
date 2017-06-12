@@ -1,8 +1,10 @@
 import pygame
 class Sound(object):
+    #Set sound effects/music
     #backgroundMusic = pygame.mixer.Music('music.mp3')
     hornSound = pygame.mixer.Sound('horn.ogg')
-    #obstacleSound = pygame.mixer.Sound('collide.wav')
+    collideSound = pygame.mixer.Sound('collide.ogg')
+    #Play the sound
     @classmethod
     def music(cls):
         cls.backgroundMusic.play(loops=-1)
@@ -11,4 +13,4 @@ class Sound(object):
         cls.hornSound.play(loops=0)
     @classmethod
     def obstacleSound(cls):
-        cls.obstacleSound.play(loops=0)
+        cls.collideSound.play(loops=0)
