@@ -3,6 +3,8 @@ A car chase game where you avoid obstacles and try not to get captured
 Nicholas Carr and Victor Lin
 2017-05-25
 """
+
+"""Core game logic"""
 # Import pygame
 import pygame
 from pygame.locals import *
@@ -42,7 +44,7 @@ class Game(object):
         def event(event, frames):
             # Do nothing else if the event was not a keypress
             if not hasattr(event, 'key'): return True
-            # If you pressed a key
+            # If a key is pressed, do the action associated with that key
             if event.type == KEYDOWN:
                 if event.key == K_RIGHT:
                     car.startTurning(-0.18)
@@ -55,7 +57,7 @@ class Game(object):
                 elif event.key == K_ESCAPE:
                     Pause(SCREEN, self)
 
-            # If you lifted your finger off the key
+            # If you lifted your finger off the key, stop doing the action associated with that key
             else:
                 if event.key == K_RIGHT or event.key == K_LEFT:
                     car.stopTurning()

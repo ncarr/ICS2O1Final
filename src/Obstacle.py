@@ -1,6 +1,7 @@
 from random import choice, randint
 import pygame
 class Obstacle(object):
+    """Generate obstacles randomly"""
     # Positions of centers of lanes
     lanes = [298, 436, 574, 712]
     def __init__(self, game, lowerLimit=2000, upperLimit=4000):

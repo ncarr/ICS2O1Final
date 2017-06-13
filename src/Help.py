@@ -3,6 +3,7 @@ from Button import Button
 from EventLoop import EventLoop
 
 class Help(object):
+    """Load the help screen"""
     def __init__(self, SCREEN):
         # Load the image and set the size and position
         image = pygame.image.load("help.png")

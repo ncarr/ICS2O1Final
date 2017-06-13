@@ -8,6 +8,7 @@ from DummyCar import DummyCar
 from Obstacle import GenerateCar
 
 class MainMenu(object):
+    """Render the main menu and buttons"""
     def __init__(self, SCREEN):
         self.SCREEN = SCREEN
         # Create animation-related objects

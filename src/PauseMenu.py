@@ -5,6 +5,7 @@ from EventLoop import EventLoop
 
 
 def Pause(SCREEN, game):
+    """Render the pause menu"""
     game.loop.stop()
     # Load the image and set the size and position to overlay the screen
     image = pygame.image.load("pause.png")

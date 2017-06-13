@@ -40,7 +40,7 @@ class Car(pygame.sprite.Sprite):
         elif self.speed < -self.MAX_SPEED:
             self.speed = -self.MAX_SPEED
     def deltaX(self, rad):
-        """Use magic to determine the horizontal distance travelled per frame using speed and direction"""
+        """Use math to determine the horizontal distance travelled per frame using speed and direction"""
         return -self.speed * math.sin(rad)
     def deltaY(self, rad):
         """Mathematically determine the vertical distance travelled per frame using speed and direction"""
