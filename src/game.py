@@ -3,9 +3,10 @@ A car chase game where you avoid obstacles and try not to get captured
 Nicholas Carr and Victor Lin
 2017-05-25
 """
-# Import required modules
+# Import pygame
 import pygame
 from pygame.locals import *
+# Import the other files in the folder
 from BackgroundScroller import BackgroundScroller
 from EventLoop import EventLoop
 from Car import Car
@@ -19,19 +20,23 @@ from Sound import Sound
 
 class Game(object):
     def __init__(self, SCREEN):
+        # Count down
         self.__class__.countDown(SCREEN)
+        # Set default attributes
         self.distance = 0
         self.maxDistance = 0
         self.bonusPoints = 0
+        # Set up obstacle generators
         self.obstacle = GenerateCar(self)
         self.trafficCone = GenerateCone(self)
-        # Create all sprites and group them
+        # Create all initial sprites and group them
         self.scroller = scroller = BackgroundScroller()
         policeCar = PoliceCar(scroller)
         car = UserCar(scroller, policeCar, self)
         carGroup = pygame.sprite.GroupSingle(car)
         policeCarGroup = pygame.sprite.GroupSingle(policeCar)
 
+        # Create the event loop
         self.loop = loop = EventLoop()
         @loop.onEvent
         def event(event, frames):
@@ -58,11 +63,14 @@ class Game(object):
                     car.stopAcceleration()
         @loop.beforeEvents
         def checkCollision(frames):
-            # Collision
+            # Detect collision with other cars
             carCollide = pygame.sprite.spritecollide(car, scroller.cars, False, pygame.sprite.collide_mask)
+            # Stop other cars when they hit us
             for sprite in carCollide:
                 sprite.speed = 0
+            # Detect collision with traffic cones
             coneCollide = pygame.sprite.spritecollide(car, scroller.trafficCones, False, pygame.sprite.collide_mask)
+            # Stopping the car when it hits another car
             if carCollide:
                 if not car.colliding:
                     car.colliding = carCollide
@@ -71,6 +79,7 @@ class Game(object):
                     car.stopTurning()
                     car.stopAcceleration()
                     scroller.deltaY = 0
+            # Slowing the car when it hits traffic cones
             elif coneCollide:
                 if not car.colliding:
                     car.colliding = coneCollide
@@ -81,7 +90,6 @@ class Game(object):
                     scroller.deltaY = 0
             else:
                 car.colliding = None
-                # Turn the car in the opposite direction
         @loop.onUpdate
         def update(frames):
             # Stop the user if they have gone too far in reverse
@@ -101,24 +109,28 @@ class Game(object):
             carGroup.draw(SCREEN)
             policeCarGroup.update()
             policeCarGroup.draw(SCREEN)
+            # Make the user lose if they hit the police car
             if pygame.sprite.spritecollide(car, policeCarGroup, False, pygame.sprite.collide_mask):
                 Lose(SCREEN, self)
+            # Inform the generators of a new frame
             self.obstacle.update()
             self.trafficCone.update()
-            # Update the number of points
-            # Define the font
+            # Draw the score
             font = pygame.font.SysFont('Segoe UI', 48, True, False)
             stamp = font.render(str(int(self.score())), True, (255, 255, 255))
             rect = stamp.get_rect()
             rect.right = 960
             rect.top = 50
             SCREEN.blit(stamp, rect)
+        # Start music when the game is playing, stop it when they are not playing
         loop.onStart(Sound.music)
         loop.onStop(Sound.stopMusic)
+        # Start the event loop
         loop.startFrames()
 
     @staticmethod
     def countDown(SCREEN):
+        """Countdown at the beginning of the game"""
         # Create an event loop
         loop = EventLoop()
         # Define the font
@@ -143,4 +155,5 @@ class Game(object):
         loop.startFrames()
 
     def score(self):
+        """Calculate the score"""
         return self.maxDistance * 0.1 + self.bonusPoints

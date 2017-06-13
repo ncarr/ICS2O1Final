@@ -5,6 +5,7 @@ class Car(pygame.sprite.Sprite):
     """All cars inherit this class"""
     MAX_SPEED = 15
     def __init__(self, position, speed, direction):
+        """Constructor to be called when a new Car object is created"""
         # Call pygame's sprite constructor
         super().__init__()
         # Set all default properties

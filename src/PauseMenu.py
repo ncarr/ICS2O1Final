@@ -24,7 +24,10 @@ def Pause(SCREEN, game):
 
     # Make the buttons do their functions
     # Stop the loop and continue the game if resume is clicked
-    playButton.onClick(loop.stop)
+    @playButton.onClick
+    def playGame():
+        loop.stop()
+        game.loop.startFrames()
     # Start a new game
     @newGameButton.onClick
     def newGame():

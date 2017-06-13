@@ -53,7 +53,7 @@ class MainMenu(object):
         @loop.onUpdate
         def update():
             self.maxDistance += 3
-            # Render the frame
+            # Update the simulation in the background
             SCREEN.fill((76,175,80))
             scroller.background.update()
             scroller.background.draw(SCREEN)
@@ -72,6 +72,7 @@ class MainMenu(object):
         loop.start()
 
     def drawFirstFrame(self):
+        # Draw the game simulation
         self.SCREEN.fill((76,175,80))
         self.scroller.background.update()
         self.scroller.background.draw(self.SCREEN)

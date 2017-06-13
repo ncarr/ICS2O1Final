@@ -1,3 +1,7 @@
+"""This script builds exes for our program
+cx_Freeze should be installed first.
+It can be installed by running `pip install cx_Freeze`
+"""
 import sys
 from cx_Freeze import setup, Executable
 

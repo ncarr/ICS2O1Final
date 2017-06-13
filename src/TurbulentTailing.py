@@ -6,7 +6,9 @@ Nicholas Carr and Victor Lin
 # Import required modules
 import pygame
 from pygame.locals import *
+# Initialise all built-in pygame modules
 pygame.init()
+# Import our classes from this folder
 from MainMenu import MainMenu
 from game import Game
 

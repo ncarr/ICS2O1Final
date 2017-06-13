@@ -18,7 +18,7 @@ class PoliceCar(Car):
         return -self.speed * math.cos(rad) - self.scroller.deltaY
     def update(self):
         """Update the volume every frame"""
+        # Make it get louder as it gets closer
         Sound.setSirenVolume(100 / (self.position[1] - 650))
-        print(100 / (self.position[1] - 650))
         # Call the parent class' constructor
         super().update()

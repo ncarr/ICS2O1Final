@@ -6,10 +6,14 @@ from Car import Car
 class DummyCar(Car):
     """The cars that drive independently of the user"""
     def __init__(self, scroller, position, speed, direction):
+        # Call the Car constructor
         super().__init__(position, speed, direction)
+        # Set default attributes
         self.scroller = scroller
+        # Randomly choose a colour
         self.imageSource = pygame.image.load(random.choice(["blueCar.png", "greenCar.png", "yellowCar.png", "purpleCar.png", "orangeCar.png"]))
         self.image = self.imageSource
+        # Set up a bitmask so we know which pixels cause collisions
         self.mask = pygame.mask.from_surface(self.image)
         self.rect = self.image.get_rect()
 

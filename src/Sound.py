@@ -1,5 +1,6 @@
 import pygame
 class Sound(object):
+    """Class we use to play sound effects"""
     #Set sound effects/music
     backgroundMusic = pygame.mixer.Sound('siren.ogg')
     hornSound = pygame.mixer.Sound('horn.ogg')

@@ -4,18 +4,21 @@ class Obstacle(object):
     # Positions of centers of lanes
     lanes = [298, 436, 574, 712]
     def __init__(self, game, lowerLimit=2000, upperLimit=4000):
+        # Set default properites
         self.game = game
         self.lowerLimit = lowerLimit
         self.upperLimit = upperLimit
+        # Start randomly generating objects
         self.createObject()
     def drawObject(self):
+        """Randomly choose a lane and call the function to draw an obstacle"""
         x = choice(self.__class__.lanes)
         self.newObstacle((x,-150))
-    # Determine when the object should appear
     def createObject(self):
+        """Determine when the object should appear"""
         self.objectDistance = self.game.maxDistance + randint(self.lowerLimit, self.upperLimit)
-    # Draw the object
     def update(self):
+        """Draw the object"""
         if self.game.maxDistance >= self.objectDistance:
             self.drawObject()
             self.createObject()
@@ -47,6 +50,7 @@ class TrafficCone(pygame.sprite.Sprite):
             return self.kill()
         y -= self.scroller.deltaY
         self.rect.center = (x, y)
+# This inherits most properties from the Obstacle class defined above
 class GenerateCone(Obstacle):
     def newObstacle(self, position):
         self.game.scroller.addTrafficCone(position)
