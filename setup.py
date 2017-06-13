@@ -2,7 +2,7 @@
 from setuptools import setup, find_packages
 setup(
     name='TurbulentTailing',
-    version='0.1.1',
+    version='1.0.0',
     description='A car chase game where you avoid obstacles and try not to get captured.',
     url='https://github.com/ncarr/ICS2O1Final',
 

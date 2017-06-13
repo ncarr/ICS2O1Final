@@ -19,7 +19,7 @@ executables = [
 ]
 
 setup(  name='TurbulentTailing',
-        version='0.1',
+        version='1.0.0',
         description='A car chase game where you avoid obstacles and try not to get captured.',
         options = {"build_exe": build_exe_options},
         executables = executables)
