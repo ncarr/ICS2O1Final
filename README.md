@@ -3,7 +3,7 @@
 #### Victor and Nicholas
 #### Full history available on [GitHub](https://github.com/ncarr/ICS2O1Final)
 
-# Opening/Installing
+## Opening/Installing
 Run dist/TurbulentTailing.exe
 
 --or--
@@ -87,3 +87,27 @@ For an interactive version, visit our mockup of the basic application flow on [A
 ### Other information
 To package our game, we use [cx_Freeze](https://cx-freeze.readthedocs.io/en/latest/overview.html).
 You can build an exe by running `pip install cx_Freeze` and then running `python setup.py build` in the src folder
+
+## Stats
+| File | Lines | Bytes |
+| :--: | :---: | :---: |
+|\_\_init\_\_.py|0|0|
+|Background.py|36|1,623|
+|BackgroundScroller.py|26|1,075|
+|Button.py|70|2,771|
+|Car.py|65|2,949|
+|DummyCar.py|29|1,186|
+|EventLoop.py|88|3,467|
+|game.py|161|6,588|
+|GameOver.py|52|1,825|
+|Help.py|28|976|
+|MainMenu.py|91|3,594|
+|Obstacle.py|57|2,305|
+|PauseMenu.py|58|1,921|
+|PoliceCar.py|24|928|
+|setup.py|25|1,119|
+|Sound.py|23|722|
+|TurbulentTailing.py|21|625|
+|UserCar.py|62|3,040|
+|**Total**|**916**|**30,126**|
+|**Average**|**51**|**1,674**|
