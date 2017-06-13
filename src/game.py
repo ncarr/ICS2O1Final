@@ -113,6 +113,8 @@ class Game(object):
             rect.right = 960
             rect.top = 50
             SCREEN.blit(stamp, rect)
+        loop.onStart(Sound.music)
+        loop.onStop(Sound.stopMusic)
         loop.startFrames()
 
     @staticmethod

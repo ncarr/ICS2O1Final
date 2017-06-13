@@ -4,6 +4,7 @@ import pygame
 class EventLoop(object):
     def __init__(self):
         self.processing = True
+        self.frames = 0
     def beforeEvents(self, beforeUpdator):
         """First function to be called every frame, even before event handling"""
         self.beforeUpdator = beforeUpdator
@@ -13,14 +14,25 @@ class EventLoop(object):
     def onUpdate(self, update):
         """Function to call every frame after events were handled"""
         self.updator = update
+    def onStart(self, start):
+        """Function to call when the loop is started"""
+        self.startHook = start
+    def onStop(self, stop):
+        """Function to call when the loop is stopped"""
+        self.stopHook = stop
     def beforeUpdator(self, frames=None):
         pass
     def eventProcessor(self, event, frames=None):
         pass
     def updator(self, frames=None):
         pass
+    def startHook(self):
+        pass
+    def stopHook(self):
+        pass
     def start(self):
         """Start a basic event loop with the supplied hooks"""
+        self.startHook()
         CLOCK = pygame.time.Clock()
         self.processing = True
         while self.processing:
@@ -42,8 +54,8 @@ class EventLoop(object):
             pygame.display.flip()
     def startFrames(self):
         """Start an event loop which counts frames with the supplied hooks"""
+        self.startHook()
         CLOCK = pygame.time.Clock()
-        self.frames = 0
         self.processing = True
         while self.processing:
             # Limit the game to 60 fps
@@ -64,4 +76,5 @@ class EventLoop(object):
             pygame.display.flip()
             self.frames += 1
     def stop(self):
+        self.stopHook()
         self.processing = False

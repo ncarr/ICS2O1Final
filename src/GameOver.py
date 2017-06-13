@@ -4,6 +4,7 @@ from EventLoop import EventLoop
 from Button import Button
 
 def Lose(SCREEN, game):
+    game.loop.stop()
     # Load the image and set the size and position to overlay the screen
     image = pygame.image.load("endScreen.png")
     rect = image.get_rect()
@@ -31,7 +32,6 @@ def Lose(SCREEN, game):
     # Start a new game
     @newGameButton.onClick
     def newGame():
-        game.loop.stop()
         loop.stop()
     # Exit the game
     @quitButton.onClick

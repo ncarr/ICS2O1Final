@@ -5,6 +5,7 @@ from EventLoop import EventLoop
 
 
 def Pause(SCREEN, game):
+    game.loop.stop()
     # Load the image and set the size and position to overlay the screen
     image = pygame.image.load("pause.png")
     rect = image.get_rect()
@@ -27,7 +28,6 @@ def Pause(SCREEN, game):
     # Start a new game
     @newGameButton.onClick
     def newGame():
-        game.loop.stop()
         loop.stop()
     # Exit the game
     @quitButton.onClick
@@ -41,6 +41,7 @@ def Pause(SCREEN, game):
         # Check to see if the player has unpaused the game
         if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
             loop.stop()
+            game.loop.startFrames()
     @loop.onUpdate
     # Check to see when the user has pressed a button
     def update():
